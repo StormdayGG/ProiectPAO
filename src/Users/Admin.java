@@ -1,4 +1,4 @@
-package User;
+package Users;
 
 public class Admin extends User{
     protected int salary;
@@ -25,16 +25,7 @@ public class Admin extends User{
         return true;
     }
 
-    public void removeUser(int userId)
-    {
-        return;
-    }
-    public void removeProduct(int productId)
-    {
-        return;
-    }
-    public void undoOrder(int orderId)
-    {
-        return;
-    }
+    public void removeUser(int userId) {}
+    public void removeProduct(int productId) {}
+    public void undoOrder(int orderId) {}
 }

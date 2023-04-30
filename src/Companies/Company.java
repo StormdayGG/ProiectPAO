@@ -1,5 +1,5 @@
-package Company;
-import User.User;
+package Companies;
+import Users.User;
 public class Company {
     protected int id;
     protected String name;
