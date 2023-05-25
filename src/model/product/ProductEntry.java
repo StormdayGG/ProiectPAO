@@ -1,4 +1,4 @@
-package Products;
+package model.product;
 
 public class ProductEntry {
     protected Product product;

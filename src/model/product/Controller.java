@@ -1,17 +1,17 @@
-package Products;
+package model.product;
 
-import Companies.Company;
+import model.company.Company;
 
 public class Controller extends ElectronicProduct{
     protected int buttonCount;
     protected String batteryType;
-    protected float batteryTime;
+    protected double batteryTime;
     protected String os;
 
     public Controller() {
     }
 
-    public Controller(int id, String name, float price, Company producer, String connection, String color, int warranty, int weight, int buttonCount, String batteryType, float batteryTime, String os) {
+    public Controller(int id, String name, double price, Company producer, String connection, String color, int warranty, int weight, int buttonCount, String batteryType, double batteryTime, String os) {
         super(id, name, price, producer, connection, color, warranty, weight);
         this.buttonCount = buttonCount;
         this.batteryType = batteryType;
@@ -35,11 +35,11 @@ public class Controller extends ElectronicProduct{
         this.batteryType = batteryType;
     }
 
-    public float getBatteryTime() {
+    public double getBatteryTime() {
         return batteryTime;
     }
 
-    public void setBatteryTime(float batteryTime) {
+    public void setBatteryTime(double batteryTime) {
         this.batteryTime = batteryTime;
     }
 

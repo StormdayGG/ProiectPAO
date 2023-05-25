@@ -1,4 +1,4 @@
-package Users;
+package model.user;
 
 public class Admin extends User{
     protected int salary;
@@ -25,6 +25,25 @@ public class Admin extends User{
         return true;
     }
 
+    public int getSalary() {
+        return salary;
+    }
+
+    public void setSalary(int salary) {
+        this.salary = salary;
+    }
+
+    public int[] getEmploymentDate() {
+        return employmentDate;
+    }
+
+    public void setEmploymentDate(int[] employmentDate) {
+        this.employmentDate = employmentDate;
+    }
+
+    /*
+        SQL commands
+         */
     public void removeUser(int userId) {}
     public void removeProduct(int productId) {}
     public void undoOrder(int orderId) {}

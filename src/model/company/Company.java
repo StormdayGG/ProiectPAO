@@ -1,5 +1,6 @@
-package Companies;
-import Users.User;
+package model.company;
+import model.exception.PermissionException;
+import model.user.User;
 public class Company {
     protected int id;
     protected String name;
@@ -7,7 +8,7 @@ public class Company {
     protected String iban;
     protected String bankName;
 
-    Company(int id, String name, String address, String iban, String bankName)
+    public Company(int id, String name, String address, String iban, String bankName)
     {
         this.id = id;
         this.name = name;
@@ -48,18 +49,16 @@ public class Company {
         return bankName;
     }
 
-    public boolean editBankInfo(String iban, String bankName, User user)
+    public void editBankInfo(String iban, String bankName, User user) throws PermissionException
     {
         if(!user.isAdmin())
         {
-            return false;
+            throw new PermissionException("You need to be an admin to edit bank information");
         }
         else
         {
             this.iban = iban;
             this.bankName = bankName;
-            return true;
         }
-
     }
 }

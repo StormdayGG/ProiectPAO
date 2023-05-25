@@ -1,11 +1,16 @@
-package Orders;
-import Users.Customer;
-import Products.ProductEntry;
+package model.order;
+import model.exception.OrderException;
+import model.user.Customer;
+import model.product.ProductEntry;
+import java.util.Date;
+import java.text.SimpleDateFormat;
+import java.util.List;
+
 public class Order {
     protected int id;
     protected Customer customer;
-    protected ProductEntry[] orderedProducts;
-    protected int[] dateTime;
+    protected List<ProductEntry> orderedProducts;
+    protected String dateTime;
     protected float totalCost;
     protected String address;
     protected float discount;
@@ -19,25 +24,21 @@ public class Order {
         address = null;
         discount = 0;
     }
-    public Order(int id, Customer customer, ProductEntry[] orderedProducts, int[] dateTime, float totalCost, String address) {
-        this.id = id;
-        this.customer = customer;
-        this.orderedProducts = orderedProducts;
-        this.dateTime = dateTime;
-        this.totalCost = totalCost;
-        this.address = address;
-        this.discount = 0;
-    }
-    //To Do: Add Verification for dateTime and discount -------------------
 
-    public Order(int id, Customer customer, ProductEntry[] orderedProducts, int[] dateTime, float totalCost, String address, float discount) {
+    public Order(int id, Customer customer, List<ProductEntry> orderedProducts, String address, float discount) throws OrderException {
         this.id = id;
         this.customer = customer;
         this.orderedProducts = orderedProducts;
-        this.dateTime = dateTime;
-        this.totalCost = totalCost;
         this.address = address;
         this.discount = discount;
+        this.dateTime = getCurrentDate();
+        this.totalCost = 0;
+        for(int i = 0; i < this.orderedProducts.size(); ++ i)
+        {
+            this.totalCost += orderedProducts.get(i).getProduct().getPrice() * orderedProducts.get(i).getQuantity();
+        }
+        if(discount > 100)
+            throw new OrderException("Discount larger than 100%, impossible");
     }
 
     public int getId() {
@@ -56,19 +57,19 @@ public class Order {
         this.customer = customer;
     }
 
-    public ProductEntry[] getOrderedProducts() {
+    public List<ProductEntry> getOrderedProducts() {
         return orderedProducts;
     }
 
-    public void setOrderedProducts(ProductEntry[] orderedProducts) {
+    public void setOrderedProducts(List<ProductEntry> orderedProducts) {
         this.orderedProducts = orderedProducts;
     }
 
-    public int[] getDateTime() {
+    public String getDateTime() {
         return dateTime;
     }
 
-    public void setDateTime(int[] dateTime) {
+    public void setDateTime(String dateTime) {
         this.dateTime = dateTime;
     }
 
@@ -98,5 +99,10 @@ public class Order {
 
     public float getDiscountedAmount() {
         return discount * totalCost;
+    }
+
+    public String getCurrentDate()
+    {
+        return (new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(new Date()));
     }
 }

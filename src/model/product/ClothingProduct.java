@@ -1,6 +1,6 @@
-package Products;
+package model.product;
 
-import Companies.Company;
+import model.company.Company;
 
 public class ClothingProduct extends Product{
     protected String color;
@@ -26,7 +26,7 @@ public class ClothingProduct extends Product{
         this.style = style;
     }
 
-    public ClothingProduct(int id, String name, float price, Company producer, String color, String material, String type, String size, String style) {
+    public ClothingProduct(int id, String name, double price, Company producer, String color, String material, String type, String size, String style) {
         super(id, name, price, producer);
         this.color = color;
         this.material = material;

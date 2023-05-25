@@ -1,6 +1,6 @@
-package Products;
+package model.product;
 
-import Companies.Company;
+import model.company.Company;
 
 public class CosmeticProduct extends Product{
     protected String bodyPart;
@@ -22,7 +22,7 @@ public class CosmeticProduct extends Product{
         this.quantity = quantity;
     }
 
-    public CosmeticProduct(int id, String name, float price, Company producer, String bodyPart, String applicationMethod, String color, String quantity) {
+    public CosmeticProduct(int id, String name, double price, Company producer, String bodyPart, String applicationMethod, String color, String quantity) {
         super(id, name, price, producer);
         this.bodyPart = bodyPart;
         this.applicationMethod = applicationMethod;

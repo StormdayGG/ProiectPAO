@@ -1,4 +1,8 @@
-package Users;
+package model.user;
+
+import model.exception.DateException;
+import model.exception.PasswordException;
+import model.exception.PhoneException;
 
 public class User {
     protected int id;
@@ -19,9 +23,9 @@ public class User {
         birthday = null;
     }
 
-    public User(int id, String firstName, String lastName, String email, String password, String phoneNumber, int[] birthday) throws Exception {
-        if(birthday.length != 3)
-            throw new Exception("Error creating user: invalid birthday. Number of elements different from 3");
+    public User(int id, String firstName, String lastName, String email, String password, String phoneNumber, int[] birthday) throws DateException {
+        if(!isValidDate(birthday))
+            throw new DateException("Invalid birthday");
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -67,7 +71,7 @@ public class User {
         return password;
     }
 
-    public void setPassword(String oldPassword, String newPassword, String rePassword) throws Exception{
+    public void setPassword(String oldPassword, String newPassword, String rePassword) throws PasswordException{
         if(this.password == null || this.password.equals(oldPassword))
         {
             if(newPassword.equals(rePassword))
@@ -75,34 +79,50 @@ public class User {
                 this.password = newPassword;
             }
             else
-                throw new Exception("Passwords do not match");
+                throw new PasswordException("Passwords do not match");
         }
         else
-            throw new Exception("Old Password is incorrect");
+            throw new PasswordException("Old Password is incorrect");
     }
 
     public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(String phoneNumber) throws Exception{
+    public void setPhoneNumber(String phoneNumber) throws PhoneException{
         if(isValidPhoneNumber(phoneNumber))
             this.phoneNumber = phoneNumber;
         else
-            throw new Exception("Invalid Phone Number");
+            throw new PhoneException("Invalid Phone Number");
     }
 
     public int[] getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(int[] birthday) {
+    public void setBirthday(int[] birthday) throws DateException{
+        if(isValidDate(birthday))
+            throw new DateException("Invalid birthday");
         this.birthday = birthday;
+    }
+
+    public boolean isValidDate(int[] date)
+    {
+        if(date.length != 3)
+            return false;
+        if(date[1] > 12 || date[1] < 1)
+            return false;
+        int[] daysOfMonth = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+        if(date[2] % 400 == 0 || (date[2] % 100 != 0 && date[2] % 4 == 0))
+            daysOfMonth[2] = 29;
+        if(date[0] > daysOfMonth[date[1]] || date[0] < 1)
+            return false;
+        return true;
     }
 
     public boolean isValidPhoneNumber(String phoneNumber)
     {
-        return true;
+        return (phoneNumber.length() == 10);
     }
 
     public boolean isAdmin()

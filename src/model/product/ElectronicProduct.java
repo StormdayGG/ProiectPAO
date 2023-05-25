@@ -1,6 +1,6 @@
-package Products;
+package model.product;
 
-import Companies.Company;
+import model.company.Company;
 
 public class ElectronicProduct extends Product{
     protected String connection;
@@ -22,7 +22,7 @@ public class ElectronicProduct extends Product{
         this.weight = weight;
     }
 
-    public ElectronicProduct(int id, String name, float price, Company producer, String connection, String color, int warranty, int weight) {
+    public ElectronicProduct(int id, String name, double price, Company producer, String connection, String color, int warranty, int weight) {
         super(id, name, price, producer);
         this.connection = connection;
         this.color = color;

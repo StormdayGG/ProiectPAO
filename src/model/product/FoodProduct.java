@@ -1,11 +1,11 @@
-package Products;
+package model.product;
 
-import Companies.Company;
+import model.company.Company;
 
 public class FoodProduct extends Product{
     protected String type;
     protected String container;
-    protected float weight;
+    protected double weight;
     protected String[] allergicFactors;
 
     public FoodProduct() {
@@ -15,14 +15,14 @@ public class FoodProduct extends Product{
         this.allergicFactors = null;
     }
 
-    public FoodProduct(String type, String container, float weight, String[] allergicFactors) {
+    public FoodProduct(String type, String container, double weight, String[] allergicFactors) {
         this.type = type;
         this.container = container;
         this.weight = weight;
         this.allergicFactors = allergicFactors;
     }
 
-    public FoodProduct(int id, String name, float price, Company producer, String type, String container, float weight, String[] allergicFactors) {
+    public FoodProduct(int id, String name, double price, Company producer, String type, String container, double weight, String[] allergicFactors) {
         super(id, name, price, producer);
         this.type = type;
         this.container = container;
@@ -46,11 +46,11 @@ public class FoodProduct extends Product{
         this.container = container;
     }
 
-    public float getWeight() {
+    public double getWeight() {
         return weight;
     }
 
-    public void setWeight(float weight) {
+    public void setWeight(double weight) {
         this.weight = weight;
     }
 

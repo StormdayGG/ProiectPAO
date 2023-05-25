@@ -1,9 +1,9 @@
-package Products;
-import Companies.Company;
+package model.product;
+import model.company.Company;
 public class Product {
     protected int id;
     protected String name;
-    protected float price;
+    protected double price;
     protected Company producer;
 
     public Product() {
@@ -13,7 +13,7 @@ public class Product {
         producer = null;
     }
 
-    public Product(int id, String name, float price, Company producer) {
+    public Product(int id, String name, double price, Company producer) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -36,11 +36,11 @@ public class Product {
         this.name = name;
     }
 
-    public float getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
