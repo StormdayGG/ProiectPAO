@@ -11,7 +11,7 @@ public class Controller extends ElectronicProduct{
     public Controller() {
     }
 
-    public Controller(int id, String name, double price, Company producer, String connection, String color, int warranty, int weight, int buttonCount, String batteryType, double batteryTime, String os) {
+    public Controller(int id, String name, double price, int producer, String connection, String color, int warranty, int weight, int buttonCount, String batteryType, double batteryTime, String os) {
         super(id, name, price, producer, connection, color, warranty, weight);
         this.buttonCount = buttonCount;
         this.batteryType = batteryType;

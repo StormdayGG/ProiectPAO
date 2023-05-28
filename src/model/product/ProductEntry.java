@@ -1,25 +1,25 @@
 package model.product;
 
 public class ProductEntry {
-    protected Product product;
+    protected int productId;
     protected int quantity;
 
     public ProductEntry() {
-        product = null;
+        productId = -1;
         quantity = 0;
     }
 
-    public ProductEntry(Product product, int quantity) {
-        this.product = product;
+    public ProductEntry(int productId, int quantity) {
+        this.productId = productId;
         this.quantity = quantity;
     }
 
-    public Product getProduct() {
-        return product;
+    public int getProductId() {
+        return productId;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProductId(int productId) {
+        this.productId = productId;
     }
 
     public int getQuantity() {

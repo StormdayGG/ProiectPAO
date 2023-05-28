@@ -22,7 +22,7 @@ public class FoodProduct extends Product{
         this.allergicFactors = allergicFactors;
     }
 
-    public FoodProduct(int id, String name, double price, Company producer, String type, String container, double weight, String[] allergicFactors) {
+    public FoodProduct(int id, String name, double price, int producer, String type, String container, double weight, String[] allergicFactors) {
         super(id, name, price, producer);
         this.type = type;
         this.container = container;

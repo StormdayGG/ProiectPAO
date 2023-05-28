@@ -4,6 +4,10 @@ import model.exception.DateException;
 import model.exception.PasswordException;
 import model.exception.PhoneException;
 
+import java.sql.*;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 public class User {
     protected int id;
     protected String firstName;
@@ -11,7 +15,7 @@ public class User {
     protected String email;
     protected String password;
     protected String phoneNumber;
-    protected int[] birthday;
+    protected String birthday;
 
     public User() {
         id = -1;
@@ -23,9 +27,15 @@ public class User {
         birthday = null;
     }
 
-    public User(int id, String firstName, String lastName, String email, String password, String phoneNumber, int[] birthday) throws DateException {
-        if(!isValidDate(birthday))
-            throw new DateException("Invalid birthday");
+    public User(String firstName, String lastName, String email, String password, String phoneNumber, String birthday) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.phoneNumber = phoneNumber;
+        this.birthday = birthday;
+    }
+    public User(int id, String firstName, String lastName, String email, String password, String phoneNumber, String birthday) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -33,6 +43,17 @@ public class User {
         this.password = password;
         this.phoneNumber = phoneNumber;
         this.birthday = birthday;
+    }
+
+    public User(User other)
+    {
+        this.id = other.getId();
+        this.firstName = other.getFirstName();
+        this.lastName = other.getLastName();
+        this.email = other.getEmail();
+        this.password = other.getPassword();
+        this.phoneNumber = other.getPhoneNumber();
+        this.birthday = other.getBirthday();
     }
 
     public int getId() {
@@ -71,19 +92,7 @@ public class User {
         return password;
     }
 
-    public void setPassword(String oldPassword, String newPassword, String rePassword) throws PasswordException{
-        if(this.password == null || this.password.equals(oldPassword))
-        {
-            if(newPassword.equals(rePassword))
-            {
-                this.password = newPassword;
-            }
-            else
-                throw new PasswordException("Passwords do not match");
-        }
-        else
-            throw new PasswordException("Old Password is incorrect");
-    }
+    public void setPassword(String password) { this.password = password; }
 
     public String getPhoneNumber() {
         return phoneNumber;
@@ -96,28 +105,12 @@ public class User {
             throw new PhoneException("Invalid Phone Number");
     }
 
-    public int[] getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(int[] birthday) throws DateException{
-        if(isValidDate(birthday))
-            throw new DateException("Invalid birthday");
+    public void setBirthday(String birthday){
         this.birthday = birthday;
-    }
-
-    public boolean isValidDate(int[] date)
-    {
-        if(date.length != 3)
-            return false;
-        if(date[1] > 12 || date[1] < 1)
-            return false;
-        int[] daysOfMonth = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
-        if(date[2] % 400 == 0 || (date[2] % 100 != 0 && date[2] % 4 == 0))
-            daysOfMonth[2] = 29;
-        if(date[0] > daysOfMonth[date[1]] || date[0] < 1)
-            return false;
-        return true;
     }
 
     public boolean isValidPhoneNumber(String phoneNumber)
@@ -128,5 +121,78 @@ public class User {
     public boolean isAdmin()
     {
         return false;
+    }
+
+    public int insertIntoTable(Connection con) throws SQLException, DateException
+    {
+        PreparedStatement insertUser = con.prepareStatement("INSERT INTO users(first_name, last_name, email, password, phone_number, birthday) VALUES (?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+        insertUser.setString(1, firstName);
+        insertUser.setString(2, lastName);
+        insertUser.setString(3, email);
+        insertUser.setString(4, password);
+        insertUser.setString(5, phoneNumber);
+        insertUser.setDate(6, getBirthdayAsDate());
+        insertUser.executeUpdate();
+        ResultSet results = insertUser.getGeneratedKeys();
+        if(results.next())
+        {
+            setId(results.getInt(1));
+            return results.getInt(1);
+        }
+        else
+            throw new SQLException("Error Creating User, No ID Obtained");
+    }
+
+    public void getFromId(Connection con, int user_id) throws SQLException, DateException, PhoneException {
+        PreparedStatement getUser = con.prepareStatement("SELECT * FROM users WHERE id = ?");
+        getUser.setInt(1, user_id);
+        ResultSet res = getUser.executeQuery();
+        if(res.next())
+        {
+            setId(res.getInt("id"));
+            setFirstName(res.getString("first_name"));
+            setLastName(res.getString("last_name"));
+            setEmail(res.getString("email"));
+            try {
+                String bd = res.getDate("birthday").toString();
+                SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+                SimpleDateFormat stdFormatter = new SimpleDateFormat("dd/MM/yyyy");
+                setBirthday(stdFormatter.format(formatter.parse(bd)));
+            }
+            catch(ParseException p)
+            {
+                throw new DateException("Error converting birthday format");
+            }
+            setPassword(res.getString("password"));
+            setPhoneNumber(res.getString("phone_number"));
+        }
+        else
+            throw new SQLException("No user with this ID found");
+    }
+
+    public int login(Connection con, String firstName, String lastName, String password) throws SQLException
+    {
+        PreparedStatement getUser = con.prepareStatement("SELECT id FROM users WHERE first_name = ? AND last_name = ? AND password = ?");
+        getUser.setString(1, firstName);
+        getUser.setString(2, lastName);
+        getUser.setString(3, password);
+        ResultSet res = getUser.executeQuery();
+        if(res.next()) {
+            return res.getInt("id");
+        }
+        else
+            throw new SQLException("Invalid credentials, could not log in");
+    }
+
+    private Date getBirthdayAsDate() throws DateException {
+        try {
+            SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+            Date d = new Date(formatter.parse(birthday).getTime());
+            return d;
+        }
+        catch(ParseException p)
+        {
+            throw new DateException("Invalid birthday format");
+        }
     }
 }

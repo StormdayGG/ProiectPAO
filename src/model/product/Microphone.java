@@ -10,7 +10,7 @@ public class Microphone extends ElectronicProduct{
     public Microphone() {
     }
 
-    public Microphone(int id, String name, double price, Company producer, String connection, String color, int warranty, int weight, int sensibility, int outputImpedance, String inputType) {
+    public Microphone(int id, String name, double price, int producer, String connection, String color, int warranty, int weight, int sensibility, int outputImpedance, String inputType) {
         super(id, name, price, producer, connection, color, warranty, weight);
         this.sensibility = sensibility;
         this.outputImpedance = outputImpedance;

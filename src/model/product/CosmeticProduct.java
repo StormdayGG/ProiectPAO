@@ -22,7 +22,7 @@ public class CosmeticProduct extends Product{
         this.quantity = quantity;
     }
 
-    public CosmeticProduct(int id, String name, double price, Company producer, String bodyPart, String applicationMethod, String color, String quantity) {
+    public CosmeticProduct(int id, String name, double price, int producer, String bodyPart, String applicationMethod, String color, String quantity) {
         super(id, name, price, producer);
         this.bodyPart = bodyPart;
         this.applicationMethod = applicationMethod;
