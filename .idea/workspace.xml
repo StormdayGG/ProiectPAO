@@ -4,25 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4b2c0c8a-17e2-4018-b679-c5c20a0207d0" name="Changes" comment="Implemented most classes, gonna start working on the main and on the database next">
-      <change afterPath="$PROJECT_DIR$/src/database_script.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProiectPAO.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ProiectPAO.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/company/Company.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/company/Company.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/order/Order.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/order/Order.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/product/ClothingProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/product/ClothingProduct.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/product/Controller.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/product/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/product/CosmeticProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/product/CosmeticProduct.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/product/ElectronicProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/product/ElectronicProduct.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/product/FoodProduct.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/product/FoodProduct.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/product/Microphone.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/product/Microphone.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/product/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/product/Product.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/product/ProductEntry.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/product/ProductEntry.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/user/Admin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/user/Admin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/user/Customer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/user/Customer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/model/user/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/model/user/User.java" afterDir="false" />
-    </list>
+    <list default="true" id="4b2c0c8a-17e2-4018-b679-c5c20a0207d0" name="Changes" comment="Added Database, and made the project connect to it and update it.&#10;Added Main menu when running code." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -101,7 +83,7 @@
       <workItem from="1684558569722" duration="1204000" />
       <workItem from="1684803231722" duration="13890000" />
       <workItem from="1685157004692" duration="4239000" />
-      <workItem from="1685243803521" duration="30114000" />
+      <workItem from="1685243803521" duration="30412000" />
     </task>
     <task id="LOCAL-00001" summary="Hopefully updated the missing product classes, and a couple of other small modifications">
       <created>1682852579924</created>
@@ -117,7 +99,14 @@
       <option name="project" value="LOCAL" />
       <updated>1685016516955</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Added Database, and made the project connect to it and update it.&#10;Added Main menu when running code.">
+      <created>1685289592448</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1685289592448</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -126,6 +115,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Hopefully updated the missing product classes, and a couple of other small modifications" />
     <MESSAGE value="Implemented most classes, gonna start working on the main and on the database next" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implemented most classes, gonna start working on the main and on the database next" />
+    <MESSAGE value="Added Database, and made the project connect to it and update it.&#10;Added Main menu when running code." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Database, and made the project connect to it and update it.&#10;Added Main menu when running code." />
   </component>
 </project>

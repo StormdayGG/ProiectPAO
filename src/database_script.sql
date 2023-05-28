@@ -18,6 +18,7 @@ CREATE TABLE `users` (
 );
 ALTER TABLE `users` ADD UNIQUE INDEX `UNIQUE` (`first_name` ASC, `last_name` ASC) VISIBLE;
 
+INSERT INTO `users`(`first_name`, `last_name`, `email`, `password`, `phone_number`, `birthday`) VALUES ('admin', '1', 'admin1@email.com', 'admin', '0123456789', STR_TO_DATE('1 January 2000', '%d %M %Y'));
 
 CREATE TABLE `customers` (
 	`user_id` int NOT NULL UNIQUE,
@@ -31,6 +32,8 @@ CREATE TABLE `admins` (
     `employment_date` DATE NOT NULL,
     FOREIGN KEY (`user_id`) REFERENCES users(id)
 );
+
+INSERT INTO admins(`user_id`, `salary`, `employment_date`) VALUES (1, 0, STR_TO_DATE('1 January 2000', '%d %M %Y'));
 
 CREATE TABLE `companies` (
 	`id` int NOT NULL AUTO_INCREMENT,
